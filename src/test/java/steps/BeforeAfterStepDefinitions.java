@@ -13,7 +13,7 @@ public class BeforeAfterStepDefinitions {
 
     //initialize timeouts
     private static WebDriverWait waitDriver;
-    public final static int TIMEOUT = 10;fi
+    public final static int TIMEOUT = 10;
     public final static int PAGE_LOAD_TIMEOUT = 50;
 
     @Before
