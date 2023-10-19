@@ -10,7 +10,7 @@ public class HomePage extends BasePage {
     }
 
     @FindBy(id = "nav-shop")
-    private WebElement ShopMenu;
+    private WebElement shopMenu;
 
     @FindBy(id = "nav-contact")
     private WebElement contactMenu;
@@ -19,7 +19,7 @@ public class HomePage extends BasePage {
     private WebElement cartMenu;
 
     public void goToShopPage() {
-        ShopMenu.click();
+        shopMenu.click();
     }
 
     public void goToContactPage() {
