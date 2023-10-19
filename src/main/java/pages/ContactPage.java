@@ -12,10 +12,14 @@ import java.util.List;
 public class ContactPage extends BasePage {
 
     private static WebDriverWait waitDriver;
-    public final static int TIMEOUT = 5;
+    private static WebDriverWait popupWaitDriver;
+    public final static int TIMEOUT = 3;
+
+    public final static int POPUP_TIMEOUT = 30;
     public ContactPage(WebDriver driver) {
         super(driver);
         waitDriver = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
+        popupWaitDriver = new WebDriverWait(driver, Duration.ofSeconds(POPUP_TIMEOUT));
     }
 
     @FindBy(id = "forename")
@@ -92,6 +96,12 @@ public class ContactPage extends BasePage {
     }
 
     public String getSuccessMessageText() {
+        By popupLocator = By.cssSelector("div.popup.modal.hide.ng-scope.in");
+        WebElement popup = driver.findElement(popupLocator);
+
+        // Wait until the popup disappears
+        popupWaitDriver.until(ExpectedConditions.attributeToBe(popup, "style", "display: none;"));
+
         waitDriver.until(ExpectedConditions.visibilityOf(successMessage));
         return successMessage.getText();
     }
