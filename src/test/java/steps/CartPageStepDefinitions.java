@@ -2,8 +2,12 @@ package steps;// CartPageStepDefinitions.java
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.HomePage;
 import pages.CartPage;
+import pages.ShopPage;
+
+import java.util.List;
 
 public class CartPageStepDefinitions {
 
@@ -11,34 +15,48 @@ public class CartPageStepDefinitions {
     private CartPage cartPage;
     private HomePage homePage;
 
+    private ShopPage shopPage;
+
     public CartPageStepDefinitions() {
         this.driver = BeforeAfterStepDefinitions.getDriver();
         homePage = new HomePage(this.driver);
         cartPage = new CartPage(this.driver);
+        shopPage = new ShopPage(this.driver);
     }
 
-    @When("I go to the shop page")
-    public void i_go_to_the_shop_page() {
-        homePage.goToShopPage();
-    }
-
-    @When("add 2 Stuffed Frog, 5 Fluffy Bunny, 3 Valentine Bear")
-    public void add_to_cart(){
-
-    }
 
     @When("I go to the cart page")
     public void i_go_to_the_cart_page() {
         homePage.goToCartPage();
     }
 
-    @Then("Verify the subtotal for each product is correct")
-    public void verify_the_subtotal_for_each_product_is_correct() {
-        // Implement verification logic for product subtotals
-        String stuffedFrogSubtotal = cartPage.getStuffedFrogSubtotal();
-        String fluffyBunnySubtotal = cartPage.getFluffyBunnySubtotal();
-        String valentineBearSubtotal = cartPage.getValentineBearSubtotal();
-        // Perform the necessary assertions here
+//    @Then("I should verify the subtotal for each product is correct")
+//    public void verifySubtotals(List<String> expectedSubtotals) {
+//
+//        cartPage.verifySubtotals(expectedSubtotals);
+//    }
+
+//    @Then("Verify the subtotal for each product is correct")
+//    public void verify_the_subtotal_for_each_product_is_correct() {
+//        // Implement verification logic for product subtotals
+//        String stuffedFrogSubtotal = cartPage.getStuffedFrogSubtotal();
+//        String fluffyBunnySubtotal = cartPage.getFluffyBunnySubtotal();
+//        String valentineBearSubtotal = cartPage.getValentineBearSubtotal();
+//        // Perform the necessary assertions here
+//    }
+
+    @Then("I should verify the subtotal for each product is correct")
+    public void i_should_verify_the_subtotals(List<String> expectedSubtotals) {
+
+        List<String> actualSubtotals = cartPage.getProductSubtotals(); // Implement this method to retrieve the actual subtotals from the cart page
+
+        for (int i = 0; i < expectedSubtotals.size(); i++) {
+            String expectedSubtotal = expectedSubtotals.get(i);
+            String actualSubtotal = actualSubtotals.get(i);
+
+            // Use assertions to compare the expected and actual subtotals
+            Assert.assertEquals(actualSubtotal, expectedSubtotal);
+        }
     }
 
     @Then("Verify the price for each product")
@@ -47,9 +65,22 @@ public class CartPageStepDefinitions {
         // Extract prices for Stuffed Frog, Fluffy Bunny, Valentine Bear, and perform assertions
     }
 
-    @Then("Verify that total = sum(sub totals)")
-    public void verify_that_total_equals_sum_of_subtotals() {
-        String cartTotal = cartPage.getCartTotal();
-        // Implement the logic to calculate the sum of subtotals and compare with cartTotal
+    @Then("I should verify the price for each product")
+    public void verifyProductPrices(List<String> expectedPrices) {
+        List<String> actualPrices = cartPage.getProductPrices();
+
+        // Assert that actual prices match expected prices
+        for (int i = 0; i < expectedPrices.size(); i++) {
+            Assert.assertEquals(actualPrices.get(i), expectedPrices.get(i),
+                    "Product price doesn't match for product " + (i + 1));
+        }
+    }
+
+    @Then("I should verify that total is sum of subtotals {double}")
+    public void verifyTotalIsSumOfSubtotals(double expectedTotal) {
+        double actualTotal = cartPage.calculateTotal();
+
+        // Assert that actual total matches expected total
+        Assert.assertEquals(actualTotal, expectedTotal, 0.01); // Provide a tolerance, e.g., 0.01 for floating-point comparison
     }
 }
