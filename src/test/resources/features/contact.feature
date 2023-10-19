@@ -1,5 +1,6 @@
 Feature: Contact Form Testing
 
+  @run
   Scenario: Test Case 1 - Verify Error Messages
     Given I am on the home page
     When I go to the contact page
@@ -8,13 +9,23 @@ Feature: Contact Form Testing
     And I populate mandatory fields with name "John", email "john@test.com" and message "Hello World"
     And I should not see error messages
 
-  Scenario: Test Case 2 - Verify Successful Submission
+  @run
+  Scenario Outline: Test Case 2 - Verify Successful Submission
     Given I am on the home page
     When I go to the contact page
     And I populate mandatory fields with name "John", email "john@example.com" and message "Hello World"
     And I click the submit button
     Then I should see a successful submission message
 
+    Examples:
+      | Iterations |
+      | 1          |
+      | 2          |
+      | 3          |
+      | 4          |
+      | 5          |
+
+  @run
   Scenario: Test Case 3 - Verify Cart Functionality
     Given I am on the home page
     When I go to the shop page
