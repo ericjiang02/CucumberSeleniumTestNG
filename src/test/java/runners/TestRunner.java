@@ -10,7 +10,10 @@ import io.cucumber.java.Before;
 import io.cucumber.java.After;
 
 @CucumberOptions(features = "src/test/resources/features", // Adjust the path as needed
-        glue = {"steps"}) // Package containing step definitions
+        glue = "steps",
+        plugin = {"pretty", "html:target/cucumber-reports"},
+        tags = "@run" // Specify the tag you want to run
+) // Package containing step definitions
 public class TestRunner extends AbstractTestNGCucumberTests {
 
 }
