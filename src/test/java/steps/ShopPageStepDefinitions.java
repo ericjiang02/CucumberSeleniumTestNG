@@ -1,6 +1,5 @@
 package steps;
 import io.cucumber.java.en.When;
-import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages.HomePage;
 import pages.ShopPage;
@@ -27,16 +26,6 @@ public class ShopPageStepDefinitions {
         homePage.goToShopPage();
     }
 
-//    @When("add 2 Stuffed Frog, 5 Fluffy Bunny, 3 Valentine Bear")
-//    public void add_to_cart(){
-//
-//    }
-
-//    @When("add (\\d+) (.+) to the cart")
-//    public void add_to_cart(int quantity, String productName) {
-//        shopPage.addToCart(quantity, productName);
-//    }
-
     @When("I add the following products to the cart:")
     public void i_add_the_following_products_to_the_cart(List<Map<String, String>> productData) {
         for (Map<String, String> data : productData) {
@@ -45,8 +34,6 @@ public class ShopPageStepDefinitions {
             String expectedPrice = data.get("ExpectedPrice");
 
             shopPage.addToCart(quantity, productName);
-            // Your code to add the product to the cart with the specified quantity and verify the expected price
-            // Implement this part based on your application's functionality and page objects
         }
     }
 }

@@ -3,11 +3,9 @@ package steps;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import pages.ContactPage;
 import pages.HomePage;
-import runners.TestRunner;
 
 public class ContactPageStepDefinitions {
     private WebDriver driver;
@@ -24,7 +22,6 @@ public class ContactPageStepDefinitions {
 
     @When("I go to the contact page")
     public void i_go_to_the_contact_page() {
-//        HomePage homePage = new HomePage(driver);
         homePage.goToContactPage();
     }
 
@@ -47,10 +44,6 @@ public class ContactPageStepDefinitions {
 
     @Then("I should not see error messages")
     public void i_should_not_see_error_messages() {
-//        assert(!contactPage.isForenameErrorMessageDisplayed());
-//        assert(!contactPage.isEmailErrorMessageDisplayed());
-//        assert(!contactPage.isMessageErrorMessageDisplayed());
-
         assert(!contactPage.forenameErrorMessageExist());
         assert(!contactPage.emailErrorMessageExist());
         assert(!contactPage.messageErrorMessageExist());

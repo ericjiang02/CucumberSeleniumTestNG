@@ -24,26 +24,10 @@ public class CartPageStepDefinitions {
         shopPage = new ShopPage(this.driver);
     }
 
-
     @When("I go to the cart page")
     public void i_go_to_the_cart_page() {
         homePage.goToCartPage();
     }
-
-//    @Then("I should verify the subtotal for each product is correct")
-//    public void verifySubtotals(List<String> expectedSubtotals) {
-//
-//        cartPage.verifySubtotals(expectedSubtotals);
-//    }
-
-//    @Then("Verify the subtotal for each product is correct")
-//    public void verify_the_subtotal_for_each_product_is_correct() {
-//        // Implement verification logic for product subtotals
-//        String stuffedFrogSubtotal = cartPage.getStuffedFrogSubtotal();
-//        String fluffyBunnySubtotal = cartPage.getFluffyBunnySubtotal();
-//        String valentineBearSubtotal = cartPage.getValentineBearSubtotal();
-//        // Perform the necessary assertions here
-//    }
 
     @Then("I should verify the subtotal for each product is correct")
     public void i_should_verify_the_subtotals(List<String> expectedSubtotals) {
@@ -57,12 +41,6 @@ public class CartPageStepDefinitions {
             // Use assertions to compare the expected and actual subtotals
             Assert.assertEquals(actualSubtotal, expectedSubtotal);
         }
-    }
-
-    @Then("Verify the price for each product")
-    public void verify_the_price_for_each_product() {
-        // Implement verification logic for product prices
-        // Extract prices for Stuffed Frog, Fluffy Bunny, Valentine Bear, and perform assertions
     }
 
     @Then("I should verify the price for each product")
