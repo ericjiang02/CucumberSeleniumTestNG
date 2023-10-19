@@ -53,17 +53,14 @@ public class ContactPage extends BasePage {
     }
 
     public boolean isForenameErrorMessageDisplayed() {
-        waitDriver.until(ExpectedConditions.visibilityOf(forenameIsRequiredErrorMessage));
         return forenameIsRequiredErrorMessage.isDisplayed();
     }
 
     public boolean isEmailErrorMessageDisplayed() {
-        waitDriver.until(ExpectedConditions.visibilityOf(emailIsRequiredErrorMessage));
         return emailIsRequiredErrorMessage.isDisplayed();
     }
 
     public boolean isMessageErrorMessageDisplayed() {
-        waitDriver.until(ExpectedConditions.visibilityOf(messageIsRequiredErrorMessage));
         return messageIsRequiredErrorMessage.isDisplayed();
     }
 
