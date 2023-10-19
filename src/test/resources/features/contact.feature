@@ -18,8 +18,18 @@ Feature: Contact Form Testing
   Scenario: Test Case 3 - Verify Cart Functionality
     Given I am on the home page
     When I go to the shop page
-    And add 2 Stuffed Frog, 5 Fluffy Bunny, 3 Valentine Bear
+    And I add the following products to the cart:
+      | Quantity | Product       | ExpectedPrice |
+      | 2        | Stuffed Frog  | 10.99        |
+      | 5        | Fluffy Bunny  | 9.99         |
+      | 3        | Valentine Bear | 14.99       |
     And I go to the cart page
     Then I should verify the subtotal for each product is correct
+      | $21.98 |
+      | $49.95 |
+      | $44.97 |
     And I should verify the price for each product
-    And I should verify that total = sum(subtotals)
+      | $10.99        |
+      | $9.99         |
+      | $14.99        |
+    And I should verify that total is sum of subtotals 116.9
