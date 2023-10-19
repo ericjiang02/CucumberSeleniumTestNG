@@ -47,9 +47,13 @@ public class ContactPageStepDefinitions {
 
     @Then("I should not see error messages")
     public void i_should_not_see_error_messages() {
-        assert(!contactPage.isForenameErrorMessageDisplayed());
-        assert(!contactPage.isEmailErrorMessageDisplayed());
-        assert(!contactPage.isMessageErrorMessageDisplayed());
+//        assert(!contactPage.isForenameErrorMessageDisplayed());
+//        assert(!contactPage.isEmailErrorMessageDisplayed());
+//        assert(!contactPage.isMessageErrorMessageDisplayed());
+
+        assert(!contactPage.forenameErrorMessageExist());
+        assert(!contactPage.emailErrorMessageExist());
+        assert(!contactPage.messageErrorMessageExist());
     }
 
     @Then("I should see a successful submission message")

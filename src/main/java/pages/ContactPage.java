@@ -67,6 +67,33 @@ public class ContactPage extends BasePage {
         return messageIsRequiredErrorMessage.isDisplayed();
     }
 
+    public boolean forenameErrorMessageExist(){
+        List<WebElement> elements = driver.findElements(By.id("forename-err"));
+        if (elements.size() != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean emailErrorMessageExist(){
+        List<WebElement> elements = driver.findElements(By.id("email-err"));
+        if (elements.size() != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean messageErrorMessageExist(){
+        List<WebElement> elements = driver.findElements(By.id("message-err"));
+        if (elements.size() != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String getSuccessMessageText() {
         waitDriver.until(ExpectedConditions.visibilityOf(successMessage));
         return successMessage.getText();
